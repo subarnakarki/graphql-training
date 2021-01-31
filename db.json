@@ -1,8 +1,12 @@
 {
   "users": [
-    { "firstName": "subarna", "id": "1","age": 27 },
-    { "firstName": "sunita", "id": "2", "age": 26},
-    { "firstName": "urmila", "id": "3","age": 47 },
-    { "firstName": "salty", "id": "4", "age": 8}
+    { "firstName": "subarna", "id": "1","age": 27, "companyId": "1" },
+    { "firstName": "sunita", "id": "2", "age": 26, "companyId": "2" },
+    { "firstName": "urmila", "id": "3","age": 47, "companyId": "2" },
+    { "firstName": "salty", "id": "4", "age": 8, "companyId": "1" }
+  ],
+  "companies": [
+    {"id": "1", "name": "Apple", "description": "iPhone" },
+    {"id": "2", "name": "Google", "description": "search" }
   ]
 }
