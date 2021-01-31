@@ -44,4 +44,18 @@ fragment userDetails on User {
   age
   firstName
 }
+
+mutation addUser {
+  addUser(firstName: "baboo", age: 27) {
+    id
+    firstName
+    age
+  }
+}
+
+mutation deleteUser {
+  deleteUser(id: "rmJhok6") {
+    age
+  }
+}
 ```
