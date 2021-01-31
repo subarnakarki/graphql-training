@@ -1,5 +1,5 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema, GraphQLList} = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema, GraphQLList, GraphQLNonNull} = graphql;
 const axios = require('axios');
 
 const CompanyType = new GraphQLObjectType({
@@ -55,9 +55,28 @@ const rootQuery = new GraphQLObjectType({
       }
     }
   }
-}); 
+});
+
+const mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addUser: {
+      type: UserType,
+      args: {
+        firstName: {type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) },
+        companyId: { type: GraphQLString }
+      },
+      resolve(parentVal, args) {
+        const { firstName, age } = args;
+        return axios.post(`http://localhost:3000/users`, { firstName, age })
+          .then(response => response.data);
+      }
+    }
+  }
+});
 
 module.exports = new GraphQLSchema({
-  query: rootQuery
-})
-
+  query: rootQuery,
+  mutation
+});  
